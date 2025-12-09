@@ -39,7 +39,7 @@ fun ImageView(
             contentDescription = contentDescription
         )
 
-        is ImageSource.ResDrawable -> ResDrawableImageView(
+        is ImageSource.DrawableRes -> ResDrawableImageView(
             resId = imageSources.resId,
             modifier = modifier,
             contentDescription = contentDescription
@@ -103,10 +103,10 @@ fun ResDrawableImageView(
     modifier: Modifier = Modifier,
     contentDescription: String? = null
 ) {
-    AsyncImage(
-        model = resId,
-        modifier = modifier,
-        contentDescription = contentDescription
+    Image(
+        painter = painterResource(id = resId),
+        contentDescription = contentDescription,
+        modifier = modifier
     )
 }
 

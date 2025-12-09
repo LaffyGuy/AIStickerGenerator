@@ -12,7 +12,7 @@ sealed interface ImageSource {
         val path: String
     ) : ImageSource
 
-    data class ResDrawable(
+    data class DrawableRes(
         val resId: Int
     ) : ImageSource
 

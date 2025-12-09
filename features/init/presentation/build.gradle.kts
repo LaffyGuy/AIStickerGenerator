@@ -12,7 +12,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -42,7 +42,7 @@ android {
 dependencies {
 
     implementation(project(":core:essentials"))
-    implementation(project(":features:init:domain"))
+    api(project(":features:init:domain"))
     implementation(project(":core:theme"))
 
     //Hilt

@@ -13,12 +13,27 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/common-android" />
+            <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/essentials" />
             <option value="$PROJECT_DIR$/core/theme" />
+            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/gallery" />
+            <option value="$PROJECT_DIR$/features/gallery/domain" />
+            <option value="$PROJECT_DIR$/features/gallery/presentation" />
             <option value="$PROJECT_DIR$/features/init" />
             <option value="$PROJECT_DIR$/features/init/domain" />
             <option value="$PROJECT_DIR$/features/init/presentation" />
+            <option value="$PROJECT_DIR$/features/main" />
+            <option value="$PROJECT_DIR$/features/main/domain" />
+            <option value="$PROJECT_DIR$/features/main/presentation" />
+            <option value="$PROJECT_DIR$/features/prompts" />
+            <option value="$PROJECT_DIR$/features/prompts/domain" />
+            <option value="$PROJECT_DIR$/features/prompts/presentation" />
+            <option value="$PROJECT_DIR$/glue" />
+            <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/navigation/common" />
+            <option value="$PROJECT_DIR$/navigation/host" />
           </set>
         </option>
       </GradleProjectSettings>

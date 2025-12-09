@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chats">Chats</string>
+    <string name="gallery">Gallery</string>
+    <string name="prompts">Prompts</string>
+</resources>

@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.project.aistickergenerator"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -44,6 +44,11 @@ android {
 dependencies {
 
     implementation(project(":core:common-android"))
+    implementation(project(":navigation"))
+    implementation(project(":core:essentials"))
+    implementation(project(":core:theme"))
+    implementation(project(":glue"))
+    implementation(project(":features:prompts:presentation"))
 
     //Hilt
     implementation(libs.hilt.android)
