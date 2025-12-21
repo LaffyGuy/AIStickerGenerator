@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -50,6 +51,7 @@ dependencies {
     implementation(project(":features:prompts:presentation"))
     implementation(project(":navigation:common"))
     implementation(project(":navigation:host"))
+    implementation(project(":core:data"))
 
     //Hilt
     implementation(libs.hilt.android)

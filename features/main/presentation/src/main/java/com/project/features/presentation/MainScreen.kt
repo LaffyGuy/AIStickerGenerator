@@ -61,7 +61,11 @@ fun MainContent(
 
         ChatTextField(
             modifier = Modifier.align(Alignment.BottomCenter),
-            isTrailingIconEnabled = true
+            isTrailingIconEnabled = true,
+            onGenerateClick = {},
+            isError = false,
+            errorTextField = false,
+            errorTextFieldMessage = null
         )
     }
 }
