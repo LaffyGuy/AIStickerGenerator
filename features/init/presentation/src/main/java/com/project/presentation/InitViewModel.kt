@@ -8,7 +8,6 @@ import com.project.core.essentials.handler.ExceptionHandler
 import com.project.domain.ShowKeyFeaturesUseCase
 import com.project.domain.entities.KeyFeature
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -27,12 +26,14 @@ class InitViewModel @Inject constructor(
     private val _effects = MutableStateFlow(Effects())
     val effects: StateFlow<Effects> = _effects
 
-    val stateFlow: StateFlow<LoadResult<State>> = flow {
+
+
+    val stateFlow: StateFlow<LoadResult<InitUiState>> = flow {
         emit(LoadResult.Loading)
         try {
             showKeyFeaturesUseCase().collect { typeResult ->
                 when(typeResult) {
-                    is ShowKeyFeaturesUseCase.Result.Show -> emit(LoadResult.Success(State(typeResult.keyFeatures)))
+                    is ShowKeyFeaturesUseCase.Result.Show -> emit(LoadResult.Success(InitUiState(typeResult.keyFeatures)))
                     ShowKeyFeaturesUseCase.Result.Skip -> letsGo()
                 }
 
@@ -59,7 +60,7 @@ class InitViewModel @Inject constructor(
 
 }
 
-data class State(
+data class InitUiState(
     val keyFeatures: List<KeyFeature> = emptyList()
 )
 

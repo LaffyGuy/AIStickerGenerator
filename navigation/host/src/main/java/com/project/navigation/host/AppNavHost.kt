@@ -1,4 +1,4 @@
-package com.project.navigation
+package com.project.navigation.host
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,9 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
-import com.project.navigation.bottomnavigation.BottomNavigationBar
-import com.project.navigation.bottomnavigation.rememberMainTabs
-
+import com.project.navigation.common.InitRoute
+import com.project.navigation.common.Route
+import com.project.navigation.host.bottomnavigation.BottomNavigationBar
+import com.project.navigation.host.bottomnavigation.rememberMainTabs
 
 @Composable
 fun AppNavHost(

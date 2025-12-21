@@ -4,6 +4,6 @@ import com.project.features.prompts.domain.entities.PromptSample
 
 interface DetailsPromptSampleByIdUseCase {
 
-    suspend operator fun invoke(id: Int): PromptSample
+    suspend operator fun invoke(id: Long): PromptSample
 
 }

@@ -1,7 +1,6 @@
-package com.project.navigation
+package com.project.navigation.host
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.project.core.essentials.resources.StringResources
 import dagger.hilt.android.EntryPointAccessors

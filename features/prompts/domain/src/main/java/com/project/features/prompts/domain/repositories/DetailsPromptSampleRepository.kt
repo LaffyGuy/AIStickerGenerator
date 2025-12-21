@@ -4,5 +4,5 @@ import com.project.features.prompts.domain.entities.PromptSample
 
 interface DetailsPromptSampleRepository {
 
-    suspend fun getDetailsPromptSample(promptId: Int): PromptSample
+    suspend fun getDetailsPromptSample(promptId: Long): PromptSample
 }

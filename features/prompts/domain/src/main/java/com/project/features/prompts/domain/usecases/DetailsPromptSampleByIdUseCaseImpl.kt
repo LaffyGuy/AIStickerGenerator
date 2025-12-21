@@ -9,7 +9,8 @@ class DetailsPromptSampleByIdUseCaseImpl @Inject constructor(
     private val detailsPromptSampleRepository: DetailsPromptSampleRepository
 ): DetailsPromptSampleByIdUseCase {
 
-    override suspend fun invoke(id: Int): PromptSample {
+    override suspend fun invoke(id: Long): PromptSample {
          return detailsPromptSampleRepository.getDetailsPromptSample(id)
     }
+
 }

@@ -12,6 +12,6 @@ interface PromptSampleDao {
     fun getAllPromptSamples(): Flow<List<PromptSampleEntity>>
 
     @Query("SELECT * FROM prompt_samples WHERE id = :id")
-    suspend fun getPromptSampleById(id: Int): PromptSampleEntity
+    suspend fun getPromptSampleById(id: Long): PromptSampleEntity
 
 }

@@ -47,7 +47,7 @@ fun InitScreen(
 
 @Composable
 fun InitContent(
-    state: State,
+    state: InitUiState,
     onLetsGoAction: () -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -68,7 +68,7 @@ fun InitContent(
 
 @Composable
 fun InitPortraitContent(
-    state: State,
+    state: InitUiState,
     onLetsGoAction: () -> Unit,
     configuration: Configuration
 ) {
@@ -81,7 +81,7 @@ fun InitPortraitContent(
 
 @Composable
 fun InitLandscapeContent(
-    state: State,
+    state: InitUiState,
     onLetsGoAction: () -> Unit,
     configuration: Configuration
 ) {
@@ -97,7 +97,7 @@ fun InitLandscapeContent(
 private fun InitContentPreview() {
     PreviewScreenContent {
         InitContent(
-            state = State(
+            state = InitUiState(
                 keyFeatures = listOf(
                     KeyFeature(
                         id = 0L,

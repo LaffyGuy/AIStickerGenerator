@@ -9,6 +9,7 @@ import com.project.features.prompts.domain.entities.PromptSample
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -18,6 +19,19 @@ class PromptsViewModel @Inject constructor(
     val exceptionToMessageMapper: ExceptionToMessageMapper,
 ): ViewModel() {
 
+//    val uiState = promptsSampleUseCase.getPromptsSample()
+//        .map { result ->
+//            when(result) {
+//                LoadResult.Loading -> PromptsUiState(isLoading = true)
+//                is LoadResult.Success -> PromptsUiState(items = result.data)
+//                is LoadResult.Error -> PromptsUiState(errorMessage = "Error")
+//            }
+//        }
+//        .stateIn(
+//            scope = viewModelScope,
+//            started = SharingStarted.WhileSubscribed(1000),
+//            initialValue = PromptsUiState()
+//        )
 
     val promptsSampleFlow: StateFlow<LoadResult<List<PromptSample>>>
     = promptsSampleUseCase.getPromptsSample()
@@ -28,3 +42,7 @@ class PromptsViewModel @Inject constructor(
         )
 
 }
+
+data class PromptsUiState(
+    val items: List<PromptSample> = emptyList()
+)

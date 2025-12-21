@@ -4,6 +4,6 @@ import com.project.data.promptssample.entities.PromptSampleDataEntity
 
 interface GetPromptSampleByIdDataRepository {
 
-    suspend fun getPromptSampleById(id: Int): PromptSampleDataEntity
+    suspend fun getPromptSampleById(id: Long): PromptSampleDataEntity
 
 }

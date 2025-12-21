@@ -22,7 +22,8 @@ object DatabaseModule {
             context,
             StickerDatabase::class.java,
             "sticker.db"
-        ).createFromAsset("databases/promptsampledb.db")
+        ).createFromAsset("databases/promptsampledbv2.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 

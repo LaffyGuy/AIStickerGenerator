@@ -1,39 +1,8 @@
-package com.project.navigation
+package com.project.navigation.host
 
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
-import kotlinx.serialization.Serializable
 import kotlin.reflect.KClass
-
-interface Route
-
-@Serializable
-data object InitRoute : Route
-
-@Serializable
-data object ChatsGraph {
-    @Serializable
-    data object ChatsRoute : Route
-}
-
-@Serializable
-data object GalleryGraph {
-    @Serializable
-    data object GalleryRoute : Route
-}
-
-
-@Serializable
-data object PromptsGraph {
-    @Serializable
-    data object PromptsRoute : Route
-
-    @Serializable
-    data class PromptDetailsRoute(
-        val promptId: Long
-    )
-
-}
 
 fun NavBackStackEntry?.routeClass(): KClass<*>? {
     return this?.destination.routeClass()

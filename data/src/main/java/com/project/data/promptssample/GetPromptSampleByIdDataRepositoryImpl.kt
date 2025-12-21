@@ -10,7 +10,7 @@ class GetPromptSampleByIdDataRepositoryImpl @Inject constructor(
     private val promptSampleDao: PromptSampleDao
 ): GetPromptSampleByIdDataRepository {
 
-    override suspend fun getPromptSampleById(id: Int): PromptSampleDataEntity {
+    override suspend fun getPromptSampleById(id: Long): PromptSampleDataEntity {
         return promptSampleDao.getPromptSampleById(id).toPromptSampleDataEntity()
     }
 }

@@ -1,4 +1,4 @@
-package com.project.navigation.bottomnavigation
+package com.project.navigation.host.bottomnavigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -8,11 +8,12 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.project.navigation.routeClass
+import com.project.navigation.host.routeClass
 
 @Composable
 fun BottomNavigationBar(
@@ -22,7 +23,7 @@ fun BottomNavigationBar(
 
 
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primaryContainer
+        containerColor = Color.White
     ) {
         val currentBackStackEntry by navController.currentBackStackEntryAsState()
         val closesNavGraphDestination = currentBackStackEntry?.destination?.hierarchy?.first {

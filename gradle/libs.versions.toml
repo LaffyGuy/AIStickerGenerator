@@ -23,6 +23,7 @@ coilVersion = "2.5.0"
 datastore = "1.1.7"
 foundation = "1.6.0"
 roomVersion = "2.8.4"
+material3Android = "1.4.0"
 
 [libraries]
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
@@ -53,11 +54,13 @@ navigation-compose = { module = "androidx.navigation:navigation-compose", versio
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "ktxImmutableCollections"}
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "ktxSerialization"}
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "ktxSerialization"}
 #coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilVersion" }
 #coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilVersion" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coilVersion" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 
 
 [plugins]

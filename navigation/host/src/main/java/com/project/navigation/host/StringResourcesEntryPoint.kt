@@ -1,4 +1,4 @@
-package com.project.navigation
+package com.project.navigation.host
 
 import com.project.core.essentials.resources.StringResources
 import dagger.hilt.EntryPoint

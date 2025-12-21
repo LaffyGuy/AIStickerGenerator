@@ -60,15 +60,43 @@ fun <T> LoadResultView(
     }
 }
 
-@Preview(showSystemUi = true)
-@Composable
-private fun SuccessContainerView() {
-    LoadResultView<String>(
-        loadResult = LoadResult.Loading,
-        content = {
-            Text(text = "Data loaded: $it")
-        },
-        onTryAgainAction = {},
-        exceptionToMessageMapper = EmptyExceptionToMessageMapper()
-    )
-}
+
+//@Composable
+//fun <T> LoadResultView(
+//    data: T?,
+//    content: @Composable (T) -> Unit,
+//    onTryAgainAction: () -> Unit,
+//    modifier: Modifier = Modifier,
+//    isLoading: Boolean,
+//    errorMessage: String?,
+//) {
+//    Box(modifier = modifier) {
+//         if(isLoading) {
+//                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+//            } else if (errorMessage != null) {
+//            ErrorView(
+//                message =  errorMessage,
+//                onRetry = onTryAgainAction,
+//                modifier = Modifier.align(Alignment.Center)
+//            )
+//             return
+//        }
+//        data?.let {
+//            content(it)
+//            }
+//    }
+//}
+//
+//@Preview(showSystemUi = true)
+//@Composable
+//private fun SuccessContainerView() {
+//    LoadResultView(
+//        data = "",
+//        content = {
+//            Text(text = "Hello")
+//        },
+//        onTryAgainAction = {},
+//        isLoading = false,
+//        errorMessage = ""
+//    )
+//}

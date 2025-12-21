@@ -44,11 +44,12 @@ android {
 dependencies {
 
     implementation(project(":core:common-android"))
-    implementation(project(":navigation"))
     implementation(project(":core:essentials"))
     implementation(project(":core:theme"))
     implementation(project(":glue"))
     implementation(project(":features:prompts:presentation"))
+    implementation(project(":navigation:common"))
+    implementation(project(":navigation:host"))
 
     //Hilt
     implementation(libs.hilt.android)

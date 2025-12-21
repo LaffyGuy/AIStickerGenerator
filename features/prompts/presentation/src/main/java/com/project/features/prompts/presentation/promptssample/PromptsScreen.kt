@@ -1,5 +1,6 @@
 package com.project.features.prompts.presentation.promptssample
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.project.core.essentials.entities.ImageSource
+import com.project.core.essentials.logger.Logger
 import com.project.core.theme.Dimens
 import com.project.core.theme.components.LoadResultView
 import com.project.core.theme.previews.PreviewScreenContent
@@ -88,7 +90,9 @@ private val promptsList = listOf(
 
 
 @Composable
-fun PromptsScreen() {
+fun PromptsScreen(
+    onClickToPromptSample: (Long) -> Unit
+) {
     val viewModel: PromptsViewModel = hiltViewModel()
     val loadResult by viewModel.promptsSampleFlow.collectAsStateWithLifecycle()
     LoadResultView(
@@ -97,7 +101,10 @@ fun PromptsScreen() {
         exceptionToMessageMapper = viewModel.exceptionToMessageMapper,
         content = {
             PromptsContent(
-                promptsList = it
+                promptsList = it,
+                clickToPromptSample = { promptId ->
+                    onClickToPromptSample(promptId)
+                }
             )
         }
     )
@@ -106,7 +113,8 @@ fun PromptsScreen() {
 
 @Composable
 fun PromptsContent(
-    promptsList: List<PromptSample>
+    promptsList: List<PromptSample>,
+    clickToPromptSample: (Long) -> Unit
 ) {
     Box(
        modifier = Modifier.fillMaxSize(),
@@ -130,9 +138,13 @@ fun PromptsContent(
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
                 items(promptsList) { promptSample ->
+                    Logger.d("Prompt Image - ${promptSample.imagePath}")
                       PromptItem(
                           title = promptSample.title,
-                          image = ImageSource.Local(path = promptSample.imagePath)
+                          image = ImageSource.Local(path = promptSample.imagePath),
+                          modifier = Modifier.clickable {
+                              clickToPromptSample(promptSample.id)
+                          }
                       )
                 }
             }
@@ -148,7 +160,8 @@ fun PromptsContent(
 fun PromptsContentPreview() {
     PreviewScreenContent {
         PromptsContent(
-           promptsList = promptsList
+           promptsList = promptsList,
+           clickToPromptSample = {}
         )
     }
 }
