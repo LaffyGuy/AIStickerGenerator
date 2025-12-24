@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -52,6 +53,7 @@ dependencies {
     implementation(project(":navigation:common"))
     implementation(project(":navigation:host"))
     implementation(project(":core:data"))
+    implementation(project(":data"))
 
     //Hilt
     implementation(libs.hilt.android)

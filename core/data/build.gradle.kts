@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core:essentials"))
+
     //Hilt
     implementation(libs.hilt.android)
     //Ksp
@@ -54,6 +56,14 @@ dependencies {
 
     //Serialization
     implementation(libs.kotlin.serialization.json)
+
+    //Retrofit
+    api(libs.retrofit)
+    api(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.kotlin.serialization.json)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

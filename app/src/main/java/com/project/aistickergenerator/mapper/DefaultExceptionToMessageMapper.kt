@@ -4,6 +4,7 @@ import com.project.aistickergenerator.R
 import com.project.core.essentials.exceptions.BackendException
 import com.project.core.essentials.exceptions.ConnectionException
 import com.project.core.essentials.exceptions.ExceptionToMessageMapper
+import com.project.core.essentials.exceptions.InvalidBackendResponseException
 import com.project.core.essentials.exceptions.UnknownException
 import com.project.core.essentials.resources.StringResources
 import javax.inject.Inject
@@ -17,6 +18,7 @@ class DefaultExceptionToMessageMapper @Inject constructor(
             is UnknownException -> stringResources.getString(R.string.unknown_error_message)
             is ConnectionException -> stringResources.getString(R.string.connection_error_message)
             is BackendException -> stringResources.getString(R.string.backend_error_message, exception.httpCode, exception.backendMessage)
+            is InvalidBackendResponseException -> stringResources.getString(R.string.invalid_response_from_the_remote_server)
             else -> stringResources.getString(R.string.unknown_error_message)
         }
     }

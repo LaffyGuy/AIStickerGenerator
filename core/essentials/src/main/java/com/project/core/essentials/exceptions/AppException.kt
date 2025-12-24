@@ -5,7 +5,9 @@ abstract class AppException(
     cause: Throwable? = null
 ): Exception(message, cause)
 
-class UnknownException: AppException("Unknown exception occurred")
+class UnknownException(
+    cause: Throwable
+): AppException("Unknown exception occurred", cause)
 
 class ConnectionException(
     cause: Throwable? = null
