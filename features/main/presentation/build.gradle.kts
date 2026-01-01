@@ -40,7 +40,9 @@ android {
 
 dependencies {
 
+    api(project(":features:main:domain"))
     implementation(project(":core:theme"))
+    implementation(project(":core:essentials"))
 
     //Hilt
     implementation(libs.hilt.android)

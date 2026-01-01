@@ -12,7 +12,7 @@ internal class StickerGenerationDataRepositoryImpl(
     private val stickerGenerationApi: StickerGenerationApi
 ) : StickerGenerationDataRepository {
 
-    override suspend fun generate(prompt: String): GeneratedStickerEntity {
+    override suspend fun generateSticker(prompt: String): GeneratedStickerEntity {
         val response = networkCall {
             stickerGenerationApi.generateSticker(
                 auth = "Bearer ${BuildConfig.AI_ACCESS_TOKEN}",

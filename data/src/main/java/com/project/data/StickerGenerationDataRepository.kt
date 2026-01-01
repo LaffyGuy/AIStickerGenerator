@@ -2,8 +2,8 @@ package com.project.data
 
 import com.project.data.stickergenerate.entities.GeneratedStickerEntity
 
-internal interface StickerGenerationDataRepository {
+interface StickerGenerationDataRepository {
 
-    suspend fun generate(prompt: String): GeneratedStickerEntity
+    suspend fun generateSticker(prompt: String): GeneratedStickerEntity
 
 }
