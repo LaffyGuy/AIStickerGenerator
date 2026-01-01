@@ -1,16 +1,16 @@
-package com.project.glue.promptssample.mappers
+package com.project.glue.promptssample
 
 import com.project.core.essentials.LoadResult
 import com.project.data.PromptsSampleDataRepository
-import com.project.data.promptssample.entities.PromptSampleDataEntity
 import com.project.features.prompts.domain.entities.PromptSample
 import com.project.features.prompts.domain.repositories.SamplesRepository
+import com.project.glue.promptssample.mappers.toPromptSample
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class PromptsSamplesRepository @Inject constructor(private val promptsSampleDataRepository: PromptsSampleDataRepository): SamplesRepository {
+class PromptsSamplesRepository @Inject constructor(private val promptsSampleDataRepository: PromptsSampleDataRepository):
+    SamplesRepository {
 
     override fun getPromptsSample(): Flow<LoadResult<List<PromptSample>>> {
        return promptsSampleDataRepository.getPromptSamples()

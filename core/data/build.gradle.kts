@@ -15,6 +15,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
     }
 
     buildTypes {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+//    ksp {
+//        arg("room.schemaLocation", "$projectDir/schemas")
+//    }
 }
 
 dependencies {
@@ -52,7 +57,6 @@ dependencies {
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.kotlinx.serialization.json)
 
     //Serialization
     implementation(libs.kotlin.serialization.json)

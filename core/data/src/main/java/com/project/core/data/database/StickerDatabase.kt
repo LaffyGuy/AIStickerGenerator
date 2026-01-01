@@ -10,7 +10,8 @@ import com.project.core.data.database.util.PromptSampleTypeConverter
 @TypeConverters(PromptSampleTypeConverter::class)
 @Database(
     entities = [PromptSampleEntity::class],
-    version = 2
+    version = 2,
+    exportSchema = false
 )
 abstract class StickerDatabase: RoomDatabase() {
     abstract fun getPromptSampleDao(): PromptSampleDao
