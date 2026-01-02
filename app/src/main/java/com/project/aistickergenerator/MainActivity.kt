@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import com.example.compose.AIStickerGeneratorTheme
+import com.project.features.gallery.presentation.GalleryScreen
 import com.project.navigation.host.AppNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AIStickerGeneratorTheme {
-                AppNavHost(modifier = Modifier.fillMaxSize())
+                GalleryScreen()
+//                AppNavHost(modifier = Modifier.fillMaxSize())
             }
         }
     }

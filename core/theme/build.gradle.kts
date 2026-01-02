@@ -38,7 +38,7 @@ android {
 
 dependencies {
 
-    implementation(project(":core:essentials"))
+    api(project(":core:essentials"))
 
     implementation(libs.coil)
 //    implementation(libs.coil.network)

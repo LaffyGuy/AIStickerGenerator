@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":navigation:host"))
     implementation(project(":core:data"))
     implementation(project(":data"))
+    implementation(project(":features:gallery:presentation"))
 
     //Hilt
     implementation(libs.hilt.android)
