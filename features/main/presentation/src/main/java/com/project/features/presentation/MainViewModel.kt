@@ -3,6 +3,8 @@ package com.project.features.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.core.essentials.LoadResult
+import com.project.core.essentials.exceptions.ExceptionToMessageMapper
+import com.project.core.essentials.logger.Logger
 import com.project.features.domain.GenerateStickerUseCase
 import com.project.features.domain.entities.GeneratedImage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,13 +20,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val generateStickerUseCase: GenerateStickerUseCase,
+    val exceptionToMessageMapper: ExceptionToMessageMapper
 ) : ViewModel() {
 
     private val _inputState = MutableStateFlow(TextInputUiState())
     val inputState: StateFlow<TextInputUiState> = _inputState
 
-    private val _stickerState = MutableStateFlow<LoadResult<GeneratedImage>>(LoadResult.Loading)
-    val stickerState: StateFlow<LoadResult<GeneratedImage>> = _stickerState
+    private val _stickerState = MutableStateFlow<LoadResult<GeneratedImage>?>(null)
+    val stickerState: StateFlow<LoadResult<GeneratedImage>?> = _stickerState
 
     val uiState = combine(
         _inputState,
@@ -32,8 +35,8 @@ class MainViewModel @Inject constructor(
     ) { input, sticker ->
         MainUiState(
             textInputState = input,
-            stickerStatus = sticker,
-            shouldShowWelcomeItem = sticker !is LoadResult.Loading && sticker !is LoadResult.Success
+            stickerStatus = sticker ?: LoadResult.Loading,
+            shouldShowWelcomeItem = sticker !is LoadResult.Success && sticker !is LoadResult.Error
         )
     }.stateIn(
         scope = viewModelScope,
@@ -58,9 +61,12 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
 
             try {
+                Logger.d("AAAAA Generating sticker for prompt: $prompt")
                 val image = generateStickerUseCase(prompt)
+                Logger.d("AAAAA Sticker generated: $image")
                 _stickerState.value = LoadResult.Success(image)
             } catch (e: Exception) {
+                Logger.d("AAAAA Generate error: ${e.message}")
                 _stickerState.value = LoadResult.Error(e)
             } finally {
                 _inputState.update {
@@ -77,7 +83,7 @@ class MainViewModel @Inject constructor(
 data class MainUiState(
     val textInputState: TextInputUiState = TextInputUiState(),
     val stickerStatus: LoadResult<GeneratedImage> = LoadResult.Loading,
-    val shouldShowWelcomeItem: Boolean = true,
+    val shouldShowWelcomeItem: Boolean = true
 )
 
 data class TextInputUiState(

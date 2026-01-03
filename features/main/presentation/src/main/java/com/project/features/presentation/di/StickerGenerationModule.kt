@@ -11,7 +11,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 interface StickerGenerationModule {
 
-
     @Binds
     fun bindGenerationStickerUseCase(
         impl: GenerateStickerUseCaseImpl

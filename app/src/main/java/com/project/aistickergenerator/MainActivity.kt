@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AIStickerGeneratorTheme {
-                GalleryScreen()
-//                AppNavHost(modifier = Modifier.fillMaxSize())
+                AppNavHost(modifier = Modifier.fillMaxSize())
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.project.features.presentation
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,24 +31,40 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.project.core.essentials.LoadResult
 import com.project.core.essentials.entities.ImageSource
+import com.project.core.essentials.logger.Logger
 import com.project.core.theme.components.ImageView
+import com.project.core.theme.components.LoadResultView
 import com.project.core.theme.previews.PreviewScreenContent
+import com.project.features.presentation.components.StickerResponse
 
 
 @Composable
 fun MainScreen(
 ) {
-
     val viewModel: MainViewModel = hiltViewModel()
 
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+    Logger.d("AAAA Welcome item - ${state.shouldShowWelcomeItem}")
+    Logger.d("AAAA Load status - ${state.stickerStatus}")
+
     MainContent(
-        uiState = state,
-        onGenerateClick = {
-            viewModel.onGenerateSticker()
-        },
+     uiState = state   ,
+        onGenerateClick = viewModel::onGenerateSticker,
         onTextChanged = {
             viewModel.onTextChanged(it)
+        },
+        content = {
+            LoadResultView(
+                loadResult = state.stickerStatus,
+                onTryAgainAction = {},
+                exceptionToMessageMapper = viewModel.exceptionToMessageMapper,
+                content = {
+                    StickerResponse(
+                        path = it.localPath
+                    )
+                }
+            )
         }
     )
 }
@@ -57,29 +74,19 @@ fun MainContent(
     uiState: MainUiState,
     onGenerateClick: () -> Unit,
     onTextChanged: (String) -> Unit,
+    content: @Composable () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        if (uiState.shouldShowWelcomeItem) {
-            WelcomeItem()
-        }
-
-        when (val sticker = uiState.stickerStatus) {
-            LoadResult.Loading -> {
-
-            }
-
-            is LoadResult.Success -> {
-                ImageView(
-                    imageSources = ImageSource.Local(sticker.data.localPath),
-                    modifier = Modifier.size(200.dp)
-                )
-            }
-
-            is LoadResult.Error -> {
-
+        Crossfade(targetState = uiState.shouldShowWelcomeItem.not()) { showSticker ->
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                if (showSticker) {
+                    content()
+                } else {
+                    WelcomeItem()
+                }
             }
         }
 
@@ -90,8 +97,11 @@ fun MainContent(
             onGenerateClick = onGenerateClick,
             isError = uiState.textInputState.isError,
             errorTextFieldMessage = uiState.textInputState.errorMessage,
-            isEnabled = uiState.textInputState.isEnabled
+            isEnabled = uiState.textInputState.isEnabled,
+            modifier = Modifier.align(Alignment.BottomCenter)
         )
+
+
     }
 }
 

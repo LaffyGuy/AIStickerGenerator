@@ -8,9 +8,10 @@ import com.project.data.stickergenerate.entities.GeneratedStickerDataEntity
 import com.project.data.stickergenerate.remote.StickerGenerationApi
 import com.project.data.BuildConfig
 import com.project.data.stickergenerate.remote.dto.GenerateImageRequestDto
+import javax.inject.Inject
 
 
-internal class StickerGenerationDataRepositoryImpl(
+internal class StickerGenerationDataRepositoryImpl @Inject constructor(
     private val stickerGenerationApi: StickerGenerationApi
 ) : StickerGenerationDataRepository {
 
