@@ -44,6 +44,8 @@ dependencies {
     implementation(project(":core:theme"))
     implementation(project(":core:essentials"))
 
+    implementation(libs.coil)
+
     //Hilt
     implementation(libs.hilt.android)
     //Ksp

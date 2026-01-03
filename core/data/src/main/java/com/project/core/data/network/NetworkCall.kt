@@ -16,7 +16,7 @@ inline fun <T> networkCall(block: () -> T): T {
         val message = e.message()
         throw BackendException(httpCode = code, backendMessage = message, cause = e)
     } catch (e: SerializationException) {
-        throw InvalidBackendResponseException(cause = e)
+        throw InvalidBackendResponseException()
     } catch (e: IOException) {
         throw ConnectionException(cause = e)
     } catch (e: Exception) {

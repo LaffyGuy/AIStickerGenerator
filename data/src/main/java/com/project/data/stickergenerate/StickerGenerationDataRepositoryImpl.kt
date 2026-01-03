@@ -1,8 +1,10 @@
 package com.project.data.stickergenerate
 
 import com.project.core.data.network.networkCall
+import com.project.core.essentials.exceptions.BackendException
+import com.project.core.essentials.exceptions.InvalidBackendResponseException
 import com.project.data.StickerGenerationDataRepository
-import com.project.data.stickergenerate.entities.GeneratedStickerEntity
+import com.project.data.stickergenerate.entities.GeneratedStickerDataEntity
 import com.project.data.stickergenerate.remote.StickerGenerationApi
 import com.project.data.BuildConfig
 import com.project.data.stickergenerate.remote.dto.GenerateImageRequestDto
@@ -12,7 +14,7 @@ internal class StickerGenerationDataRepositoryImpl(
     private val stickerGenerationApi: StickerGenerationApi
 ) : StickerGenerationDataRepository {
 
-    override suspend fun generateSticker(prompt: String): GeneratedStickerEntity {
+    override suspend fun generateSticker(prompt: String): GeneratedStickerDataEntity {
         val response = networkCall {
             stickerGenerationApi.generateSticker(
                 auth = "Bearer ${BuildConfig.AI_ACCESS_TOKEN}",
@@ -20,10 +22,17 @@ internal class StickerGenerationDataRepositoryImpl(
             )
         }
 
-        val bytes = response.body()?.bytes()
-            ?: throw IllegalStateException("Empty response body")
+        if (!response.isSuccessful) {
+            throw BackendException(
+                httpCode = response.code(),
+                backendMessage = response.message()
+            )
+        }
 
-        return GeneratedStickerEntity(bytes)
+        val body = response.body()
+            ?: throw InvalidBackendResponseException()
 
+        return GeneratedStickerDataEntity(body.bytes())
     }
+
 }
